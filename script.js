@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
     lightbox.innerHTML = `
         <div class="lightbox-content">
             <button class="lightbox-close">×</button>
-            <iframe id="lightbox-iframe" src="" frameborder="0" allowfullscreen></iframe>
+            <iframe id="lightbox-iframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     `;
     document.body.appendChild(lightbox);
@@ -145,11 +145,28 @@ document.addEventListener('DOMContentLoaded', function() {
         if (iframe) {
             container.addEventListener('click', function(e) {
                 e.preventDefault();
-                const videoSrc = iframe.src;
-                // Ajouter autoplay quand on ouvre la lightbox
-                lightboxIframe.src = videoSrc + '&autoplay=1';
+                e.stopPropagation();
+                
+                // Récupérer l'URL de base
+                let videoSrc = iframe.src.split('?')[0];
+                const videoId = videoSrc.split('/').pop();
+                
+                // Construire l'URL avec tous les paramètres pour autoplay et lecture continue
+                const params = new URLSearchParams({
+                    'autoplay': '1',
+                    'mute': '0',
+                    'controls': '1',
+                    'modestbranding': '1',
+                    'rel': '0',
+                    'showinfo': '0',
+                    'fs': '1',
+                    'playsinline': '0',
+                    'enablejsapi': '1'
+                });
+                
+                lightboxIframe.src = `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
                 lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Désactiver le scroll
+                document.body.style.overflow = 'hidden';
             });
         }
     });
@@ -158,11 +175,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeLightbox() {
         lightbox.classList.remove('active');
         lightboxIframe.src = ''; // Arrêter la vidéo
-        document.body.style.overflow = ''; // Réactiver le scroll
+        document.body.style.overflow = '';
     }
 
     // Fermer au clic sur le bouton X
-    closeBtn.addEventListener('click', closeLightbox);
+    closeBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        closeLightbox();
+    });
 
     // Fermer au clic en dehors de la vidéo
     lightbox.addEventListener('click', function(e) {
