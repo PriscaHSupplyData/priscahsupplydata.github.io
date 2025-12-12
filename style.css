@@ -603,16 +603,17 @@ section {
     
     /* Language switcher on mobile */
     .lang-switcher {
-        position: fixed;
-        top: 15px;
-        right: 60px;
+        position: absolute;
+        top: 18px;
+        right: 70px;
         margin: 0;
         z-index: 1001;
     }
     
     .lang-btn {
-        padding: 4px 10px;
-        font-size: 0.85rem;
+        padding: 3px 8px;
+        font-size: 0.75rem;
+        border-width: 1.5px;
     }
     
     .hero {
