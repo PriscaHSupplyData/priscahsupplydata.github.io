@@ -139,11 +139,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const lightboxIframe = document.getElementById('lightbox-iframe');
     const closeBtn = document.querySelector('.lightbox-close');
 
-    // Ouvrir la lightbox au clic sur une vidéo
+    // Ajouter une couche cliquable sur chaque vidéo
     videoContainers.forEach(container => {
         const iframe = container.querySelector('iframe');
         if (iframe) {
-            container.addEventListener('click', function(e) {
+            // Créer la couche cliquable
+            const clickLayer = document.createElement('div');
+            clickLayer.className = 'video-click-layer';
+            container.appendChild(clickLayer);
+            
+            // Clic sur la couche pour ouvrir la lightbox
+            clickLayer.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 
