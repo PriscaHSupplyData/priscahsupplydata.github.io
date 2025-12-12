@@ -1,90 +1,143 @@
 // ========================================
+// UTILITAIRES
+// ========================================
+function safeOn(el, event, handler, options) {
+  if (!el) return false;
+  el.addEventListener(event, handler, options);
+  return true;
+}
+
+function qs(sel, root = document) {
+  return root.querySelector(sel);
+}
+function qsa(sel, root = document) {
+  return Array.from(root.querySelectorAll(sel));
+}
+
+function getYouTubeId(url) {
+  try {
+    const u = new URL(url);
+
+    // watch?v=ID
+    const v = u.searchParams.get('v');
+    if (v) return v;
+
+    const parts = u.pathname.split('/').filter(Boolean);
+
+    // /embed/ID ou /shorts/ID
+    const i = parts.findIndex(p => ['embed', 'shorts'].includes(p));
+    if (i !== -1 && parts[i + 1]) return parts[i + 1];
+
+    // youtu.be/ID
+    if (u.hostname.includes('youtu.be') && parts[0]) return parts[0];
+  } catch (e) {
+    // URL invalide
+  }
+  return null;
+}
+
+// ========================================
 // NAVIGATION MOBILE
 // ========================================
-const burger = document.querySelector('.burger');
-const nav = document.querySelector('.nav-links');
-const navLinks = document.querySelectorAll('.nav-links li');
+(function initMobileNav() {
+  const burger = qs('.burger');
+  const nav = qs('.nav-links');
+  const navLinks = qsa('.nav-links li');
 
-// Toggle menu mobile
-burger.addEventListener('click', () => {
+  if (!burger || !nav) return;
+
+  safeOn(burger, 'click', () => {
     nav.classList.toggle('active');
     burger.classList.toggle('toggle');
-});
+  });
 
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        nav.classList.remove('active');
-        burger.classList.remove('toggle');
+  navLinks.forEach(link => {
+    safeOn(link, 'click', () => {
+      nav.classList.remove('active');
+      burger.classList.remove('toggle');
     });
-});
+  });
+})();
 
 // ========================================
 // SMOOTH SCROLLING
 // ========================================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const offset = 80;
-            const targetPosition = target.offsetTop - offset;
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
+(function initSmoothScroll() {
+  qsa('a[href^="#"]').forEach(anchor => {
+    safeOn(anchor, 'click', function (e) {
+      const href = this.getAttribute('href');
+      if (!href || href === '#') return;
+
+      const target = qs(href);
+      if (!target) return;
+
+      e.preventDefault();
+      const offset = 80;
+      const targetPosition = target.offsetTop - offset;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
     });
-});
+  });
+})();
 
 // ========================================
 // NAVBAR SCROLL EFFECT
 // ========================================
-let lastScroll = 0;
-const navbar = document.querySelector('.navbar');
+(function initNavbarShadow() {
+  const navbar = qs('.navbar');
+  if (!navbar) return;
 
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    if (currentScroll > 50) {
-        navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
-    } else {
-        navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
-    }
-    lastScroll = currentScroll;
-});
+  safeOn(window, 'scroll', () => {
+    const currentScroll = window.pageYOffset || 0;
+    navbar.style.boxShadow = currentScroll > 50
+      ? '0 4px 12px rgba(0, 0, 0, 0.15)'
+      : '0 2px 8px rgba(0, 0, 0, 0.08)';
+  });
+})();
 
 // ========================================
 // ANIMATIONS AU SCROLL
 // ========================================
-const observerOptions = {
+(function initScrollAnimations() {
+  const animatedElements = qsa('.project-card, .skill-category, .highlight-card');
+  if (!animatedElements.length) return;
+
+  const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
-};
+  };
 
-const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
     });
-}, observerOptions);
+  }, observerOptions);
 
-const animatedElements = document.querySelectorAll('.project-card, .skill-category, .highlight-card');
-animatedElements.forEach(el => {
+  animatedElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
-});
+  });
+})();
 
 // ========================================
 // ANNÉE DYNAMIQUE
 // ========================================
-const footerYear = document.querySelector('.footer p');
-if (footerYear) {
-    const currentYear = new Date().getFullYear();
-    footerYear.innerHTML = `&copy; ${currentYear} Prisca H. Supply & Data - Supply Chain Expert | Data Analyst | Power BI`;
-}
+(function initFooterYear() {
+  const footerYear = qs('.footer p');
+  if (!footerYear) return;
+
+  const currentYear = new Date().getFullYear();
+  footerYear.innerHTML = `&copy; ${currentYear} Prisca H. Supply & Data - Supply Chain Expert | Data Analyst | Power BI`;
+})();
 
 // ========================================
 // LOG DE BIENVENUE
@@ -93,100 +146,137 @@ console.log('%c🎨 Portfolio Prisca H. Supply & Data', 'color: #1e8b8b; font-si
 console.log('%cSupply Chain Expert | Data Analyst | Power BI', 'color: #ff8c69; font-size: 14px;');
 
 // ========================================
-function getYouTubeId(url) {
-  try {
-    const u = new URL(url);
-
-    // Cas : watch?v=ID
-    if (u.searchParams.get('v')) return u.searchParams.get('v');
-
-    // Cas : /embed/ID ou /shorts/ID
-    const parts = u.pathname.split('/').filter(Boolean);
-    const i = parts.findIndex(p => ['embed', 'shorts'].includes(p));
-    if (i !== -1 && parts[i + 1]) return parts[i + 1];
-
-    // Cas : youtu.be/ID
-    if (u.hostname.includes('youtu.be') && parts[0]) return parts[0];
-
-  } catch (e) {
-    console.warn('URL YouTube invalide:', url);
-  }
-  return null;
-}
-
-
 // VIDEO LIGHTBOX
 // ========================================
-document.addEventListener('DOMContentLoaded', function() {
-    const lightbox = document.createElement('div');
-    lightbox.className = 'video-lightbox';
-    lightbox.innerHTML = `
+(function initVideoLightbox() {
+  document.addEventListener('DOMContentLoaded', () => {
+    // Crée la lightbox vidéo si pas déjà présente
+    let lightbox = qs('.video-lightbox');
+    if (!lightbox) {
+      lightbox = document.createElement('div');
+      lightbox.className = 'video-lightbox';
+      lightbox.innerHTML = `
         <div class="lightbox-content">
-            <button class="lightbox-close">×</button>
-            <iframe id="lightbox-iframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <button class="lightbox-close" aria-label="Fermer">×</button>
+          <iframe id="lightbox-iframe" src="" frameborder="0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen></iframe>
         </div>
-    `;
-    document.body.appendChild(lightbox);
+      `;
+      document.body.appendChild(lightbox);
+    }
 
-    const videoContainers = document.querySelectorAll('.project-video');
-    const lightboxIframe = document.getElementById('lightbox-iframe');
-    const closeBtn = document.querySelector('.lightbox-close');
+    const lightboxIframe = qs('#lightbox-iframe', lightbox);
+    const closeBtn = qs('.lightbox-close', lightbox);
 
+    const videoContainers = qsa('.project-video');
     videoContainers.forEach(container => {
-        const iframe = container.querySelector('iframe');
-        if (iframe) {
-            const clickLayer = document.createElement('div');
-            clickLayer.className = 'video-click-layer';
-            container.appendChild(clickLayer);
-            
-           clickLayer.addEventListener('click', function(e) {
-  e.preventDefault();
-  e.stopPropagation();
+      const iframe = qs('iframe', container);
+      if (!iframe) return;
 
-  const videoId = getYouTubeId(iframe.src);
-  if (!videoId) {
-    console.warn("Impossible d'extraire l'ID YouTube depuis:", iframe.src);
-    return;
-  }
+      // couche cliquable (au-dessus de l'iframe)
+      let clickLayer = qs('.video-click-layer', container);
+      if (!clickLayer) {
+        clickLayer = document.createElement('div');
+        clickLayer.className = 'video-click-layer';
+        container.appendChild(clickLayer);
+      }
 
-  const params = new URLSearchParams({
-    autoplay: '1',
-    mute: '1',              // <- test : évite blocage autoplay
-    controls: '1',
-    modestbranding: '1',
-    rel: '0',
-    fs: '1',
-    playsinline: '1'
-  });
+      safeOn(clickLayer, 'click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
 
-  lightboxIframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`;
-  lightbox.classList.add('active');
-  document.body.style.overflow = 'hidden';
-});
-
+        const videoId = getYouTubeId(iframe.src);
+        if (!videoId) {
+          console.warn('Impossible d’extraire l’ID YouTube depuis:', iframe.src);
+          return;
         }
+
+        const params = new URLSearchParams({
+          autoplay: '1',
+          mute: '1',               // + fiable (autoplay)
+          controls: '1',
+          modestbranding: '1',
+          rel: '0',
+          fs: '1',
+          playsinline: '1'
+        });
+
+        // nocookie = plus clean (et souvent mieux accepté)
+        lightboxIframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
     });
 
     function closeLightbox() {
-        lightbox.classList.remove('active');
-        lightboxIframe.src = '';
-        document.body.style.overflow = '';
+      lightbox.classList.remove('active');
+      if (lightboxIframe) lightboxIframe.src = '';
+      document.body.style.overflow = '';
     }
 
-    closeBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
+    safeOn(closeBtn, 'click', (e) => {
+      e.stopPropagation();
+      closeLightbox();
+    });
+
+    safeOn(lightbox, 'click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    safeOn(document, 'keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
         closeLightbox();
+      }
+    });
+  });
+})();
+
+// ========================================
+// IMAGE LIGHTBOX (captures onglets)
+// Utilise des <img class="tab-shot" ...>
+// ========================================
+(function initImageLightbox() {
+  document.addEventListener('DOMContentLoaded', () => {
+    const shots = qsa('.tab-shot');
+    if (!shots.length) return;
+
+    let imgBox = qs('.img-lightbox');
+    if (!imgBox) {
+      imgBox = document.createElement('div');
+      imgBox.className = 'img-lightbox';
+      imgBox.innerHTML = `
+        <div class="img-lightbox-content">
+          <button class="img-close" aria-label="Fermer">×</button>
+          <img class="img-full" src="" alt="">
+        </div>
+      `;
+      document.body.appendChild(imgBox);
+    }
+
+    const fullImg = qs('.img-full', imgBox);
+    const closeBtn = qs('.img-close', imgBox);
+
+    const close = () => {
+      imgBox.classList.remove('active');
+      if (fullImg) fullImg.src = '';
+      document.body.style.overflow = '';
+    };
+
+    shots.forEach(img => {
+      safeOn(img, 'click', () => {
+        if (!fullImg) return;
+        fullImg.src = img.getAttribute('data-full') || img.src; // optionnel
+        fullImg.alt = img.alt || '';
+        imgBox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
     });
 
-    lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
+    safeOn(closeBtn, 'click', close);
+    safeOn(imgBox, 'click', (e) => { if (e.target === imgBox) close(); });
+    safeOn(document, 'keydown', (e) => {
+      if (e.key === 'Escape' && imgBox.classList.contains('active')) close();
     });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-            closeLightbox();
-        }
-    });
-});
+  });
+})();
