@@ -580,10 +580,42 @@ section {
 }
 
 @media screen and (max-width: 768px) {
+    .navbar .container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    /* Logo passe en dessous sur mobile */
+    .logo {
+        order: 2;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 1.3rem;
+    }
+    
+    /* Burger reste en haut à droite */
+    .burger {
+        order: 1;
+        margin-left: auto;
+    }
+    
+    /* FR/EN en haut à gauche */
+    .lang-switcher {
+        order: 0;
+        position: static;
+        margin: 0;
+    }
+    
+    .lang-btn {
+        padding: 4px 10px;
+        font-size: 0.8rem;
+    }
+    
     .nav-links {
         position: fixed;
         right: -100%;
-        top: 60px;
+        top: 90px;
         flex-direction: column;
         background-color: var(--white);
         width: 100%;
@@ -599,21 +631,6 @@ section {
     
     .burger {
         display: block;
-    }
-    
-    /* Language switcher on mobile */
-    .lang-switcher {
-        position: absolute;
-        top: 18px;
-        right: 70px;
-        margin: 0;
-        z-index: 1001;
-    }
-    
-    .lang-btn {
-        padding: 3px 8px;
-        font-size: 0.75rem;
-        border-width: 1.5px;
     }
     
     .hero {
