@@ -136,6 +136,43 @@ a {
 }
 
 /* ========================================
+   LANGUAGE SWITCHER
+======================================== */
+.lang-switcher {
+    display: flex;
+    gap: 5px;
+    margin-left: 20px;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 2px solid var(--primary-teal);
+    color: var(--primary-teal);
+    padding: 5px 12px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.lang-btn:hover {
+    background: var(--accent-coral);
+    border-color: var(--accent-coral);
+    color: var(--white);
+}
+
+.lang-btn.active {
+    background: var(--primary-teal);
+    color: var(--white);
+}
+
+.lang-btn.active:hover {
+    background: var(--primary-teal-dark);
+    border-color: var(--primary-teal-dark);
+}
+
+/* ========================================
    HERO SECTION
 ======================================== */
 .hero {
@@ -564,6 +601,20 @@ section {
         display: block;
     }
     
+    /* Language switcher on mobile */
+    .lang-switcher {
+        position: fixed;
+        top: 15px;
+        right: 60px;
+        margin: 0;
+        z-index: 1001;
+    }
+    
+    .lang-btn {
+        padding: 4px 10px;
+        font-size: 0.85rem;
+    }
+    
     .hero {
         padding: 100px 0 60px;
     }
@@ -598,6 +649,97 @@ section {
     .projects-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* ========================================
+   APERÇU ONGLETS POWER BI
+======================================== */
+.tabs-preview {
+    margin-top: 12px;
+}
+
+.tabs-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    opacity: 0.85;
+}
+
+.tabs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.tab-shot {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: zoom-in;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tab-shot:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 900px) {
+    .tabs-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================
+   IMAGE LIGHTBOX
+======================================== */
+.img-lightbox {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.75);
+    z-index: 99999;
+    padding: 18px;
+}
+
+.img-lightbox.active {
+    display: flex;
+}
+
+.img-lightbox-content {
+    position: relative;
+    width: min(1100px, 96vw);
+}
+
+.img-full {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    display: block;
+}
+
+.img-close {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    background: var(--accent-coral);
+    color: white;
+    font-size: 26px;
+    line-height: 40px;
+    transition: var(--transition);
+}
+
+.img-close:hover {
+    background: var(--primary-teal);
+    transform: rotate(90deg) scale(1.1);
 }
 
 /* ========================================
@@ -761,76 +903,4 @@ section {
         font-size: 0.75rem;
         padding: 6px 12px;
     }
-}
-
-/* Aperçu onglets Power BI */
-.tabs-preview {
-    margin-top: 12px;
-}
-
-.tabs-title {
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 6px;
-    opacity: 0.85;
-}
-
-.tabs-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-}
-
-.tab-shot {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    border-radius: 10px;
-    cursor: zoom-in;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.tab-shot:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-@media (max-width: 900px) {
-    .tabs-grid {
-        grid-template-columns: 1fr;
-    }
-}
-.img-lightbox{
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,.75);
-  z-index: 99999;
-  padding: 18px;
-}
-.img-lightbox.active{ display:flex; }
-
-.img-lightbox-content{
-  position: relative;
-  width: min(1100px, 96vw);
-}
-.img-full{
-  width: 100%;
-  height: auto;
-  border-radius: 14px;
-  display: block;
-}
-.img-close{
-  position:absolute;
-  top:-10px;
-  right:-10px;
-  width:40px;
-  height:40px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  font-size: 26px;
-  line-height: 40px;
 }
