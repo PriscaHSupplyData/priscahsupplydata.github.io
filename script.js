@@ -117,29 +117,31 @@ document.addEventListener('DOMContentLoaded', function() {
             clickLayer.className = 'video-click-layer';
             container.appendChild(clickLayer);
             
-            clickLayer.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                let videoSrc = iframe.src.split('?')[0];
-                const videoId = videoSrc.split('/').pop();
-                
-                const params = new URLSearchParams({
-                    'autoplay': '1',
-                    'mute': '0',
-                    'controls': '1',
-                    'modestbranding': '1',
-                    'rel': '0',
-                    'showinfo': '0',
-                    'fs': '1',
-                    'playsinline': '0',
-                    'enablejsapi': '1'
-                });
-                
-                lightboxIframe.src = `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
+           clickLayer.addEventListener('click', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  const videoId = getYouTubeId(iframe.src);
+  if (!videoId) {
+    console.warn("Impossible d'extraire l'ID YouTube depuis:", iframe.src);
+    return;
+  }
+
+  const params = new URLSearchParams({
+    autoplay: '1',
+    mute: '1',              // <- test : évite blocage autoplay
+    controls: '1',
+    modestbranding: '1',
+    rel: '0',
+    fs: '1',
+    playsinline: '1'
+  });
+
+  lightboxIframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?${params.toString()}`;
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+});
+
         }
     });
 
