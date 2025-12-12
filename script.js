@@ -118,3 +118,63 @@ if (footerYear) {
 console.log('%c🎨 Portfolio Prisca H. Supply & Data', 'color: #1e8b8b; font-size: 20px; font-weight: bold;');
 console.log('%cSupply Chain Expert | Data Analyst | Power BI', 'color: #ff8c69; font-size: 14px;');
 console.log('%cDéveloppé avec 💙', 'color: #9b7fbf; font-size: 12px;');
+
+// ========================================
+// VIDEO LIGHTBOX
+// ========================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Créer la lightbox
+    const lightbox = document.createElement('div');
+    lightbox.className = 'video-lightbox';
+    lightbox.innerHTML = `
+        <div class="lightbox-content">
+            <button class="lightbox-close">×</button>
+            <iframe id="lightbox-iframe" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    `;
+    document.body.appendChild(lightbox);
+
+    // Récupérer les éléments
+    const videoContainers = document.querySelectorAll('.project-video');
+    const lightboxIframe = document.getElementById('lightbox-iframe');
+    const closeBtn = document.querySelector('.lightbox-close');
+
+    // Ouvrir la lightbox au clic sur une vidéo
+    videoContainers.forEach(container => {
+        const iframe = container.querySelector('iframe');
+        if (iframe) {
+            container.addEventListener('click', function(e) {
+                e.preventDefault();
+                const videoSrc = iframe.src;
+                // Ajouter autoplay quand on ouvre la lightbox
+                lightboxIframe.src = videoSrc + '&autoplay=1';
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Désactiver le scroll
+            });
+        }
+    });
+
+    // Fermer la lightbox
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightboxIframe.src = ''; // Arrêter la vidéo
+        document.body.style.overflow = ''; // Réactiver le scroll
+    }
+
+    // Fermer au clic sur le bouton X
+    closeBtn.addEventListener('click', closeLightbox);
+
+    // Fermer au clic en dehors de la vidéo
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    // Fermer avec la touche Échap
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            closeLightbox();
+        }
+    });
+});
