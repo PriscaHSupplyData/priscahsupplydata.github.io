@@ -800,3 +800,37 @@ section {
         grid-template-columns: 1fr;
     }
 }
+.img-lightbox{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.75);
+  z-index: 99999;
+  padding: 18px;
+}
+.img-lightbox.active{ display:flex; }
+
+.img-lightbox-content{
+  position: relative;
+  width: min(1100px, 96vw);
+}
+.img-full{
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  display: block;
+}
+.img-close{
+  position:absolute;
+  top:-10px;
+  right:-10px;
+  width:40px;
+  height:40px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 26px;
+  line-height: 40px;
+}
