@@ -607,7 +607,7 @@ section {
 /* Vidéo taille normale (250px) */
 .project-video iframe {
     height: 250px !important;
-    cursor: pointer;
+    pointer-events: none; /* Désactiver les clics directs sur l'iframe */
 }
 
 /* Masquer complètement les overlays YouTube (photo de profil, etc.) */
@@ -617,6 +617,7 @@ section {
     overflow: hidden;
 }
 
+/* Couche cliquable invisible par-dessus la vidéo */
 .project-video::before {
     content: '';
     position: absolute;
@@ -624,9 +625,9 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
-    pointer-events: none;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.3) 100%);
+    z-index: 2;
+    cursor: pointer;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 25%, transparent 75%, rgba(0,0,0,0.2) 100%);
 }
 
 .project-video iframe {
@@ -646,7 +647,7 @@ section {
     font-size: 0.85rem;
     opacity: 0;
     transition: var(--transition);
-    z-index: 2;
+    z-index: 3;
     pointer-events: none;
 }
 
@@ -687,6 +688,7 @@ section {
     border: none;
     border-radius: 12px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    pointer-events: auto; /* Réactiver les clics dans la lightbox */
 }
 
 .lightbox-close {
