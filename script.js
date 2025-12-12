@@ -7,14 +7,10 @@ const navLinks = document.querySelectorAll('.nav-links li');
 
 // Toggle menu mobile
 burger.addEventListener('click', () => {
-    // Toggle nav
     nav.classList.toggle('active');
-    
-    // Burger animation
     burger.classList.toggle('toggle');
 });
 
-// Fermer le menu quand on clique sur un lien
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         nav.classList.remove('active');
@@ -30,9 +26,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            const offset = 80; // Hauteur de la navbar
+            const offset = 80;
             const targetPosition = target.offsetTop - offset;
-            
             window.scrollTo({
                 top: targetPosition,
                 behavior: 'smooth'
@@ -49,19 +44,16 @@ const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
-    
-    // Ajouter une ombre plus prononcée au scroll
     if (currentScroll > 50) {
         navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
     } else {
         navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
     }
-    
     lastScroll = currentScroll;
 });
 
 // ========================================
-// ANIMATIONS AU SCROLL (Intersection Observer)
+// ANIMATIONS AU SCROLL
 // ========================================
 const observerOptions = {
     threshold: 0.1,
@@ -77,7 +69,6 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observer tous les éléments à animer
 const animatedElements = document.querySelectorAll('.project-card, .skill-category, .highlight-card');
 animatedElements.forEach(el => {
     el.style.opacity = '0';
@@ -87,24 +78,7 @@ animatedElements.forEach(el => {
 });
 
 // ========================================
-// GESTION DES VIDÉOS (pour le futur)
-// ========================================
-// Cette fonction sera utile quand tu ajouteras tes vidéos
-function setupVideoPlaceholders() {
-    const videoPlaceholders = document.querySelectorAll('.video-placeholder');
-    
-    videoPlaceholders.forEach(placeholder => {
-        placeholder.addEventListener('click', function() {
-            // Pour le moment, juste un message
-            console.log('Vidéo à venir - prépare ton contenu!');
-        });
-    });
-}
-
-setupVideoPlaceholders();
-
-// ========================================
-// ANNÉE DYNAMIQUE DANS LE FOOTER
+// ANNÉE DYNAMIQUE
 // ========================================
 const footerYear = document.querySelector('.footer p');
 if (footerYear) {
@@ -117,13 +91,11 @@ if (footerYear) {
 // ========================================
 console.log('%c🎨 Portfolio Prisca H. Supply & Data', 'color: #1e8b8b; font-size: 20px; font-weight: bold;');
 console.log('%cSupply Chain Expert | Data Analyst | Power BI', 'color: #ff8c69; font-size: 14px;');
-console.log('%cDéveloppé avec 💙', 'color: #9b7fbf; font-size: 12px;');
 
 // ========================================
 // VIDEO LIGHTBOX
 // ========================================
 document.addEventListener('DOMContentLoaded', function() {
-    // Créer la lightbox
     const lightbox = document.createElement('div');
     lightbox.className = 'video-lightbox';
     lightbox.innerHTML = `
@@ -134,30 +106,24 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.body.appendChild(lightbox);
 
-    // Récupérer les éléments
     const videoContainers = document.querySelectorAll('.project-video');
     const lightboxIframe = document.getElementById('lightbox-iframe');
     const closeBtn = document.querySelector('.lightbox-close');
 
-    // Ajouter une couche cliquable sur chaque vidéo
     videoContainers.forEach(container => {
         const iframe = container.querySelector('iframe');
         if (iframe) {
-            // Créer la couche cliquable
             const clickLayer = document.createElement('div');
             clickLayer.className = 'video-click-layer';
             container.appendChild(clickLayer);
             
-            // Clic sur la couche pour ouvrir la lightbox
             clickLayer.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 
-                // Récupérer l'URL de base
                 let videoSrc = iframe.src.split('?')[0];
                 const videoId = videoSrc.split('/').pop();
                 
-                // Construire l'URL avec tous les paramètres pour autoplay et lecture continue
                 const params = new URLSearchParams({
                     'autoplay': '1',
                     'mute': '0',
@@ -177,27 +143,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Fermer la lightbox
     function closeLightbox() {
         lightbox.classList.remove('active');
-        lightboxIframe.src = ''; // Arrêter la vidéo
+        lightboxIframe.src = '';
         document.body.style.overflow = '';
     }
 
-    // Fermer au clic sur le bouton X
     closeBtn.addEventListener('click', function(e) {
         e.stopPropagation();
         closeLightbox();
     });
 
-    // Fermer au clic en dehors de la vidéo
     lightbox.addEventListener('click', function(e) {
         if (e.target === lightbox) {
             closeLightbox();
         }
     });
 
-    // Fermer avec la touche Échap
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && lightbox.classList.contains('active')) {
             closeLightbox();
