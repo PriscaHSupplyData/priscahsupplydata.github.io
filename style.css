@@ -762,3 +762,41 @@ section {
         padding: 6px 12px;
     }
 }
+
+/* Aperçu onglets Power BI */
+.tabs-preview {
+    margin-top: 12px;
+}
+
+.tabs-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    opacity: 0.85;
+}
+
+.tabs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.tab-shot {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: zoom-in;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tab-shot:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 900px) {
+    .tabs-grid {
+        grid-template-columns: 1fr;
+    }
+}
