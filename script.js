@@ -93,6 +93,28 @@ console.log('%c🎨 Portfolio Prisca H. Supply & Data', 'color: #1e8b8b; font-si
 console.log('%cSupply Chain Expert | Data Analyst | Power BI', 'color: #ff8c69; font-size: 14px;');
 
 // ========================================
+function getYouTubeId(url) {
+  try {
+    const u = new URL(url);
+
+    // Cas : watch?v=ID
+    if (u.searchParams.get('v')) return u.searchParams.get('v');
+
+    // Cas : /embed/ID ou /shorts/ID
+    const parts = u.pathname.split('/').filter(Boolean);
+    const i = parts.findIndex(p => ['embed', 'shorts'].includes(p));
+    if (i !== -1 && parts[i + 1]) return parts[i + 1];
+
+    // Cas : youtu.be/ID
+    if (u.hostname.includes('youtu.be') && parts[0]) return parts[0];
+
+  } catch (e) {
+    console.warn('URL YouTube invalide:', url);
+  }
+  return null;
+}
+
+
 // VIDEO LIGHTBOX
 // ========================================
 document.addEventListener('DOMContentLoaded', function() {
