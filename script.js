@@ -280,3 +280,42 @@ console.log('%cSupply Chain Expert | Data Analyst | Power BI', 'color: #ff8c69; 
     });
   });
 })();
+document.addEventListener('DOMContentLoaded', () => {
+  const shots = document.querySelectorAll('.tab-shot');
+  if (!shots.length) return;
+
+  // Crée la lightbox (une seule fois)
+  const box = document.createElement('div');
+  box.className = 'img-lightbox';
+  box.innerHTML = `
+    <div class="img-lightbox-content">
+      <button class="img-close" aria-label="Fermer">×</button>
+      <img class="img-full" src="" alt="">
+    </div>
+  `;
+  document.body.appendChild(box);
+
+  const full = box.querySelector('.img-full');
+  const closeBtn = box.querySelector('.img-close');
+
+  function openImg(img) {
+    full.src = img.src;
+    full.alt = img.alt || '';
+    box.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeImg() {
+    box.classList.remove('active');
+    full.src = '';
+    document.body.style.overflow = '';
+  }
+
+  shots.forEach(img => {
+    img.addEventListener('click', () => openImg(img));
+  });
+
+  closeBtn.addEventListener('click', closeImg);
+  box.addEventListener('click', (e) => { if (e.target === box) closeImg(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeImg(); });
+});
