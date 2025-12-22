@@ -256,12 +256,13 @@
 .slide-description {
   font-size: 15px;
   line-height: 1.7;
-  color: #4a4a4a;  
+  color: #2C5F5F;  /* ← TEAL FONCÉ LISIBLE */
   margin-bottom: 24px;
 }
 
 .slide-description strong {
-  color: #2C5F5F;
+  color: #1a5f5f;  /* ← Encore plus foncé pour le gras */
+  font-weight: 600;
 }
 
 .slide-description ul {
@@ -271,6 +272,7 @@
 
 .slide-description li {
   margin-bottom: 8px;
+  color: #2C5F5F;  /* ← TEAL POUR LES PUCES */
 }
 
 .slide-description code {
@@ -280,6 +282,11 @@
   font-family: 'Courier New', monospace;
   font-size: 13px;
   color: #d63384;
+}
+
+.slide-description p {
+  color: #2C5F5F;  /* ← TEAL POUR LES PARAGRAPHES */
+  margin-bottom: 12px;
 }
 
 .highlight {
