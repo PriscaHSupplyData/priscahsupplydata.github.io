@@ -72,7 +72,7 @@
   background: #f0f0f0;
   border-radius: 16px;
   font-size: 12px;
-  color: #5A9B9E;
+  color: #52979A;
   font-weight: 500;
 }
 
@@ -81,7 +81,7 @@
   margin-top: 16px;
   width: 100%;
   padding: 12px;
-  background: #5A9B9E;
+  background: #52979A;
   color: white;
   border: none;
   border-radius: 6px;
@@ -232,7 +232,7 @@
 .slide-number {
   display: inline-block;
   padding: 4px 12px;
-  background: #5A9B9E;
+  background: #52979A;
   color: white;
   border-radius: 16px;
   font-size: 12px;
@@ -248,7 +248,7 @@
 
 .slide-subtitle {
   font-size: 18px;
-  color: #5A9B9E;
+  color: #52979A;
   font-weight: 600;
   margin: 0 0 24px 0;
 }
@@ -285,7 +285,7 @@
 .highlight {
   background: #E8F5F5;
   padding: 12px 16px;
-  border-left: 4px solid #5A9B9E;
+  border-left: 4px solid #52979A;
   border-radius: 4px;
   margin-top: 16px;
   font-weight: 500;
@@ -363,7 +363,7 @@
 }
 
 .dot.active {
-  background: #5A9B9E;
+  background: #52979A;
   width: 32px;
   border-radius: 6px;
 }
@@ -404,7 +404,7 @@
 
 .btn-download {
   padding: 10px 20px;  /* Réduit de 12px 24px */
-  background: #5A9B9E;
+  background: #52979A;
   color: white;
   border: none;
   border-radius: 6px;
@@ -560,7 +560,7 @@
 .carousel-nav:focus,
 .modal-close:focus,
 .dot:focus {
-  outline: 3px solid #5A9B9E;
+  outline: 3px solid #52979A;
   outline-offset: 2px;
 }
 
