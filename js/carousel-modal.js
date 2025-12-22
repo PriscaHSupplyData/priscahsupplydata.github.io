@@ -47,11 +47,11 @@ function showSlide(n) {
   const slides = document.querySelectorAll('.carousel-slide');
   const dots = document.querySelectorAll('.dot');
   
-  // Wrap around if out of bounds
-  if (n >= totalSlides) {
+// Wrap around if out of bounds
+  if (n >= 6) {  // 6 slides au total
     currentSlide = 0;
   } else if (n < 0) {
-    currentSlide = totalSlides - 1;
+    currentSlide = 5;  // Dernière slide
   } else {
     currentSlide = n;
   }
@@ -78,7 +78,10 @@ function showSlide(n) {
 function changeSlide(direction) {
   showSlide(currentSlide + direction);
 }
-
+// === GO TO SPECIFIC SLIDE (DOTS) ===
+function goToSlide(n) {
+  showSlide(n);
+}
 // === GO TO SPECIFIC SLIDE (DOTS) ===
 function goToSlide(n) {
   showSlide(n);
