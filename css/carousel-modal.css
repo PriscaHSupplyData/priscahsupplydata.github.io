@@ -370,57 +370,61 @@
 
 /* === MODAL FOOTER === */
 .modal-footer {
-  background: #f8f9fa;
-  padding: 16px 40px;  /* Réduit de 20px à 16px */
+  background: linear-gradient(to top, #ffffff 0%, #f8f9fa 100%);
+  padding: 0;
   border-top: 1px solid #dee2e6;
+  display: flex;
+  flex-direction: column;
 }
 
 .footer-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;  /* Ajoute un gap pour l'espacement */
+  padding: 12px 40px;
+  border-bottom: 1px solid #e9ecef;
 }
 
 .footer-left {
-  flex: 1;  /* Prend tout l'espace disponible */
+  flex: 1;
 }
 
 .footer-left h4 {
-  margin: 0 0 4px 0;
+  margin: 0 0 2px 0;
   color: #2C5F5F;
-  font-size: 16px;  /* Réduit de 18px à 16px */
+  font-size: 15px;
 }
 
 .footer-left p {
   margin: 0;
-  color: #333;  /* ← CHANGÉ */
-  font-size: 13px;  /* Réduit de 14px à 13px */
+  color: #666;
+  font-size: 12px;
 }
 
 .footer-right {
-  flex-shrink: 0;  /* Ne rétrécit pas */
+  flex-shrink: 0;
 }
 
+/* BOUTON DÉTACHÉ EN BAS */
 .btn-download {
-  padding: 10px 20px;  /* Réduit de 12px 24px */
-  background: #52979A;
+  display: block;
+  width: auto;
+  margin: 0 auto;
+  padding: 10px 24px;
+  background: #5A9B9E;
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 13px;  /* Réduit de 14px */
+  border-radius: 0;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  white-space: nowrap;  /* Empêche le texte de se couper */
+  text-align: center;
 }
 
 .btn-download:hover {
   background: #4A8B8E;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(90, 155, 158, 0.3);
 }
-
 /* === RESPONSIVE DESIGN === */
 
 /* Tablet */
