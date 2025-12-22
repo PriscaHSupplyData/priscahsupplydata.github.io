@@ -655,21 +655,50 @@
   color: #ffffff;   /* encore un cran plus clair */
   font-weight: 600;
 }
-/* === SLIDE 2 : TEXTE GRIS PLUS LISIBLE & DIFFÉRENCIÉ === */
+/* === HARMONISATION TEXTE SLIDES DEMAND FORECAST === */
 
-/* Couleur par défaut du texte (paragraphe + puces) */
-.carousel-slide:nth-child(2) .slide-description p,
-.carousel-slide:nth-child(2) .slide-description li {
-  color: #4b5563; /* gris foncé lisible sur fond blanc */
+/* Base : blanc sur fond sombre */
+.slide-info {
+  color: #ffffff;
 }
 
-/* Mots en gras dans la description : restent bien mis en avant en teal */
-.carousel-slide:nth-child(2) .slide-description strong {
-  color: #2C5F5F;  /* teal plus foncé */
+.slide-description,
+.slide-description p,
+.slide-description li {
+  color: #ffffff;           /* texte normal en blanc */
+}
+
+/* Sous-titre sous le H2 : vert/teal plus clair */
+.slide-subtitle {
+  color: #9bd2d5;           /* vert/teal lumineux */
   font-weight: 600;
 }
 
-/* La phrase mise en avant "Tous les calculs..." reste bien contrastée */
-.carousel-slide:nth-child(2) .slide-description .highlight {
+/* Mots importants en vert/teal */
+.slide-description strong {
+  color: #9bd2d5;           /* accent vert */
+  font-weight: 600;
+}
+
+/* Numéro de slide : petit badge teal comme avant */
+.slide-number {
+  background: #52979A;
+  color: #ffffff;
+}
+
+/* Encadrés clairs (fond vert très pâle) : texte foncé pour le contraste */
+.highlight {
+  background: #E8F5F5;
+  border-left: 4px solid #52979A;
+  color: #2C5F5F;           /* texte foncé lisible */
+}
+
+/* Bloc "Tech :" en bas : même logique que les highlights */
+.slide-tech {
+  background: #E8F5F5;
   color: #2C5F5F;
+}
+
+.slide-tech strong {
+  color: #2C5F5F;           /* "Tech :" reste bien visible */
 }
