@@ -371,7 +371,7 @@
 /* === MODAL FOOTER === */
 .modal-footer {
   background: #f8f9fa;
-  padding: 20px 40px;
+  padding: 16px 40px;  /* Réduit de 20px à 16px */
   border-top: 1px solid #dee2e6;
 }
 
@@ -379,30 +379,40 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;  /* Ajoute un gap pour l'espacement */
+}
+
+.footer-left {
+  flex: 1;  /* Prend tout l'espace disponible */
 }
 
 .footer-left h4 {
   margin: 0 0 4px 0;
   color: #2C5F5F;
-  font-size: 18px;
+  font-size: 16px;  /* Réduit de 18px à 16px */
 }
 
 .footer-left p {
   margin: 0;
-  color: #333;
-  font-size: 14px;
+  color: #333;  /* ← CHANGÉ */
+  font-size: 13px;  /* Réduit de 14px à 13px */
+}
+
+.footer-right {
+  flex-shrink: 0;  /* Ne rétrécit pas */
 }
 
 .btn-download {
-  padding: 12px 24px;
+  padding: 10px 20px;  /* Réduit de 12px 24px */
   background: #5A9B9E;
   color: white;
   border: none;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 13px;  /* Réduit de 14px */
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap;  /* Empêche le texte de se couper */
 }
 
 .btn-download:hover {
