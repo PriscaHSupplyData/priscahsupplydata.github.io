@@ -563,21 +563,18 @@
       <span class="dot" onclick="goToSlide(5)"></span>
     </div>
 
-<!-- Project Info Footer -->
-<div class="modal-footer">
-  <div class="footer-content">
-    <div class="footer-left">
-      <h4 data-translate="carousel.footer.title">📊 Tableau de Bord Demand Forecast</h4>
-      <p data-translate="carousel.footer.subtitle">Solution Excel complète de prévision | 96% Précision | 5% MAPE</p>
-    </div>
-  </div>
-  <button class="btn-download" onclick="requestFile()">
-    <span data-translate="carousel.footer.button">📥 Demander le Fichier Complet</span>
-  </button>
-</div>
+<!-- Bouton discret en bas à droite -->
+    <button class="btn-request-file" onclick="requestFile()" title="Demander le fichier complet">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+      </svg>
+      <span data-translate="carousel.footer.button">Demander le fichier</span>
+    </button>
 
-  </div>
-</div>
+    <!-- Navigation Arrows -->
+    <button class="carousel-nav prev" onclick="changeSlide(-1)">
 
     
 </body>
