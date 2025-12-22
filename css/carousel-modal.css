@@ -702,3 +702,152 @@
 .slide-tech strong {
   color: #2C5F5F;           /* "Tech :" reste bien visible */
 }
+/* === FIX GLOBAL : Encadrés clairs lisibles ("Tech", "Tous les calculs", etc.) === */
+
+/* Encadrés (fond clair) → texte foncé */
+.slide-tech,
+.slide-tech p,
+.slide-tech span,
+.slide-tech li {
+  color: #2C5F5F !important;   /* lisible et cohérent avec ton palette teal */
+}
+
+/* Le mot "Tech :" doit être foncé aussi */
+.slide-tech strong {
+  color: #2C5F5F !important;
+  font-weight: 600;
+}
+
+/* Encadré highlight (vert très clair) → même cohérence */
+.highlight,
+.highlight p,
+.highlight li,
+.highlight strong {
+  color: #2C5F5F !important;
+}
+/* === HARMONISATION GLOBALE DES SLIDES DEMAND FORECAST === */
+
+/* Colonne texte : largeur confortable pour la lecture */
+.slide-info {
+  max-width: 540px;
+}
+
+/* Numéro de slide : petit badge propre */
+.slide-number {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #52979A;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* Titre + sous-titre */
+.slide-info h2 {
+  font-size: 30px;
+  line-height: 1.2;
+  margin: 0 0 6px 0;
+  color: #ffffff;
+}
+
+.slide-subtitle {
+  font-size: 17px;
+  line-height: 1.4;
+  margin: 0 0 20px 0;
+  color: #9bd2d5;
+  font-weight: 600;
+}
+
+/* Texte courant */
+.slide-description {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Blanc lisible sur fond sombre */
+.slide-description,
+.slide-description p,
+.slide-description li {
+  color: #ffffff;
+}
+
+/* Puces : respiration entre les éléments */
+.slide-description ul {
+  margin: 6px 0 14px;
+  padding-left: 20px;
+}
+
+.slide-description li + li {
+  margin-top: 4px;
+}
+
+/* Mots importants : accent teal */
+.slide-description strong {
+  color: #9bd2d5;
+  font-weight: 600;
+}
+
+/* Un peu d’espace avant les encadrés */
+.slide-description .highlight {
+  margin-top: 10px;
+}
+/* Encadrés verts clairs (texte explicatif) */
+.highlight,
+.highlight p,
+.highlight li,
+.highlight strong {
+  background: #E8F5F5;
+  border-left: 4px solid #52979A;
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin-top: 12px;
+  color: #2C5F5F !important;
+}
+
+/* Bloc "Tech :" en bas de chaque slide */
+.slide-tech,
+.slide-tech p,
+.slide-tech span,
+.slide-tech li {
+  background: #E8F5F5;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-top: 18px;
+  font-size: 14px;
+  color: #2C5F5F !important;
+}
+
+/* Le mot "Tech :" lui-même (en <strong>) */
+.slide-tech strong {
+  color: #2C5F5F !important;
+  font-weight: 600;
+}
+/* Un peu plus d’espace entre image et texte sur desktop */
+@media (min-width: 1200px) {
+  .slide-content {
+    gap: 40px;
+  }
+}
+
+/* Sur petits écrans : on garde le confort de lecture */
+@media (max-width: 768px) {
+  .slide-info {
+    max-width: 100%;
+  }
+
+  .slide-info h2 {
+    font-size: 22px;
+  }
+
+  .slide-subtitle {
+    font-size: 15px;
+  }
+
+  .slide-description {
+    font-size: 14px;
+  }
+}
