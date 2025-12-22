@@ -203,8 +203,8 @@
 /* === SLIDE CONTENT LAYOUT === */
 .slide-content {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 40px;
+  grid-template-columns: 2fr 1fr;  /* ← IMAGE 2X PLUS GRANDE ! */
+  gap: 30px;
   height: 100%;
   align-items: start;
 }
