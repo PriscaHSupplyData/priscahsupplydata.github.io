@@ -655,3 +655,21 @@
   color: #ffffff;   /* encore un cran plus clair */
   font-weight: 600;
 }
+/* === SLIDE 2 : TEXTE GRIS PLUS LISIBLE & DIFFÉRENCIÉ === */
+
+/* Couleur par défaut du texte (paragraphe + puces) */
+.carousel-slide:nth-child(2) .slide-description p,
+.carousel-slide:nth-child(2) .slide-description li {
+  color: #4b5563; /* gris foncé lisible sur fond blanc */
+}
+
+/* Mots en gras dans la description : restent bien mis en avant en teal */
+.carousel-slide:nth-child(2) .slide-description strong {
+  color: #2C5F5F;  /* teal plus foncé */
+  font-weight: 600;
+}
+
+/* La phrase mise en avant "Tous les calculs..." reste bien contrastée */
+.carousel-slide:nth-child(2) .slide-description .highlight {
+  color: #2C5F5F;
+}
