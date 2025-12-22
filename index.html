@@ -209,22 +209,277 @@
                 </div>
 
                 <!-- Excel Project 2 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="image-placeholder">
-                            <span data-translate="screenshot_coming">📊 Screenshot à venir</span>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3 data-translate="excel2_title">Tableau de Demande Planning</h3>
-                        <p class="project-description" data-translate="excel2_desc">Outil de planification des demandes avec consolidation des besoins, gestion des priorités et suivi des délais. Interface optimisée pour les équipes opérationnelles.</p>
-                        <div class="project-tags">
-                            <span class="tag" data-translate="excel2_tag1">Excel</span>
-                            <span class="tag" data-translate="excel2_tag2">Planning</span>
-                            <span class="tag" data-translate="excel2_tag3">Demandes</span>
-                        </div>
-                    </div>
-                </div>
+<div class="project-card demand-forecast-card">
+  <div class="project-thumbnail" onclick="openForecastCarousel()">
+    <img src="images/demand-forecast/01-dashboard.jpg" alt="Demand Forecast Dashboard">
+    <div class="thumbnail-overlay">
+      <div class="overlay-content">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+          <path d="M11 8v6"></path>
+          <path d="M8 11h6"></path>
+        </svg>
+        <p data-translate="carousel.clickExplore">Cliquer pour explorer</p>
+      </div>
+    </div>
+  </div>
+  
+  <h3 data-translate="carousel.projectTitle">Tableau de Bord Demand Forecast</h3>
+  <p data-translate="carousel.projectDescription">Solution de prévision complète avec Power Query, Power Pivot & DAX. 96% de précision, MAPE 5%, analyse ABC, ajustement saisonnier, et reporting S&OP interactif.</p>
+  
+  <div class="project-tags">
+    <span class="tag">Excel</span>
+    <span class="tag">Power Query</span>
+    <span class="tag">Power Pivot</span>
+    <span class="tag">DAX</span>
+    <span class="tag" data-translate="carousel.tagForecasting">Prévision</span>
+  </div>
+  
+  <button class="btn-view-project" onclick="openForecastCarousel()">
+    <span data-translate="carousel.viewProject">Voir le Projet Complet</span>
+  </button>
+</div>
+
+
+<!-- 2. AJOUTE CE MODAL À LA FIN DE TON <body>, JUSTE AVANT </body> -->
+<div id="forecastCarouselModal" class="carousel-modal">
+  <div class="modal-content">
+    
+    <!-- Close Button -->
+    <button class="modal-close" onclick="closeForecastCarousel()" aria-label="Close modal">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Carousel Container -->
+    <div class="carousel-container">
+      
+      <!-- Slide 1: Dashboard -->
+      <div class="carousel-slide active">
+        <div class="slide-content">
+          <div class="slide-image">
+            <img src="images/demand-forecast/01-dashboard.jpg" alt="Demand Forecast Dashboard">
+          </div>
+          <div class="slide-info">
+            <span class="slide-number">1 / 6</span>
+            <h2 data-translate="carousel.slide1.title">Tableau de Bord Demand Forecast</h2>
+            <p class="slide-subtitle" data-translate="carousel.slide1.subtitle">Reporting S&OP Interactif</p>
+            <div class="slide-description">
+              <p><strong data-translate="carousel.slide1.intro">Tableau de bord complet comportant :</strong></p>
+              <ul>
+                <li data-translate="carousel.slide1.feature1">4 KPIs avec mise en forme conditionnelle (Précision 96%, MAPE 5%, Biais 5%)</li>
+                <li data-translate="carousel.slide1.feature2">Comparaison Prévisions vs Réalisé (Jan-Nov 2025)</li>
+                <li data-translate="carousel.slide1.feature3">Analyse ABC avec graphique de Pareto</li>
+                <li data-translate="carousel.slide1.feature4">Prévisions par Catégorie (Ventes vs Prévisions)</li>
+                <li data-translate="carousel.slide1.feature5">Suivi de variance mensuelle avec code couleur</li>
+                <li data-translate="carousel.slide1.feature6">Analyse Top 5 Meilleurs/Moins performants</li>
+              </ul>
+            </div>
+            <div class="slide-tech">
+              <strong data-translate="carousel.tech">Tech :</strong> Excel, Power Pivot, DAX, Mise en forme conditionnelle
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Parameters -->
+      <div class="carousel-slide">
+        <div class="slide-content">
+          <div class="slide-image">
+            <img src="images/demand-forecast/02-parameters.jpg" alt="Forecast Parameters Configuration">
+          </div>
+          <div class="slide-info">
+            <span class="slide-number">2 / 6</span>
+            <h2 data-translate="carousel.slide2.title">Tableau de Configuration</h2>
+            <p class="slide-subtitle" data-translate="carousel.slide2.subtitle">Paramètres & Réglages Dynamiques</p>
+            <div class="slide-description">
+              <p><strong data-translate="carousel.slide2.intro">Système de configuration centralisé :</strong></p>
+              <ul>
+                <li data-translate="carousel.slide2.feature1"><strong>Période de Prévision :</strong> Sélection de date glissante (déc-25)</li>
+                <li data-translate="carousel.slide2.feature2"><strong>Sélection de Méthode :</strong> Auto ou Manuel (Moyenne Mobile, Moyenne Pondérée, Lissage Exponentiel, Saisonnier)</li>
+                <li data-translate="carousel.slide2.feature3"><strong>Indices Saisonniers :</strong> Tableau 12 mois (0,6 à 3,5 pour le pic de Noël)</li>
+                <li data-translate="carousel.slide2.feature4"><strong>Classification ABC/XYZ :</strong> Seuils de chiffre d'affaires & CV</li>
+                <li data-translate="carousel.slide2.feature5"><strong>Objectifs KPI :</strong> MAPE &lt;15%, Biais ±5%, Précision &gt;85%</li>
+              </ul>
+              <p class="highlight" data-translate="carousel.slide2.highlight">Tous les calculs se mettent à jour dynamiquement selon ces paramètres</p>
+            </div>
+            <div class="slide-tech">
+              <strong data-translate="carousel.tech">Tech :</strong> <span data-translate="carousel.slide2.tech">Tableaux Excel, Validation de données, Plages nommées</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Power Query -->
+      <div class="carousel-slide">
+        <div class="slide-content">
+          <div class="slide-image">
+            <img src="images/demand-forecast/03-power-query.jpg" alt="Power Query Transformations">
+          </div>
+          <div class="slide-info">
+            <span class="slide-number">3 / 6</span>
+            <h2 data-translate="carousel.slide3.title">Pipeline ETL Power Query</h2>
+            <p class="slide-subtitle" data-translate="carousel.slide3.subtitle">Transformation & Nettoyage des Données</p>
+            <div class="slide-description">
+              <p><strong data-translate="carousel.slide3.intro">7 requêtes de transformation :</strong></p>
+              <ul>
+                <li data-translate="carousel.slide3.feature1"><strong>Products_Clean :</strong> Données maître produits avec catégories</li>
+                <li data-translate="carousel.slide3.feature2"><strong>Sales_Transform :</strong> 480 transactions de ventes nettoyées & formatées</li>
+                <li data-translate="carousel.slide3.feature3"><strong>ABC_Analysis :</strong> Logique Pareto avec calcul de % cumulé</li>
+                <li data-translate="carousel.slide3.feature4"><strong>Lead_Time_Category :</strong> Logique de classification</li>
+                <li data-translate="carousel.slide3.feature5"><strong>Price_Category :</strong> Segmentation par gammes de prix</li>
+                <li data-translate="carousel.slide3.feature6"><strong>Forecast_Metrics :</strong> KPIs agrégés par produit</li>
+              </ul>
+              <p class="highlight" data-translate="carousel.slide3.highlight">Toutes les requêtes utilisent le langage M pour une performance optimale</p>
+            </div>
+            <div class="slide-tech">
+              <strong data-translate="carousel.tech">Tech :</strong> <span data-translate="carousel.slide3.tech">Power Query M, Table.Buffer, Table.Group, fonctions List</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Forecast Engine -->
+      <div class="carousel-slide">
+        <div class="slide-content">
+          <div class="slide-image">
+            <img src="images/demand-forecast/04-forecast-engine.jpg" alt="Forecast Calculation Engine">
+          </div>
+          <div class="slide-info">
+            <span class="slide-number">4 / 6</span>
+            <h2 data-translate="carousel.slide4.title">Moteur de Calcul des Prévisions</h2>
+            <p class="slide-subtitle" data-translate="carousel.slide4.subtitle">Logique de Prévision Multi-Méthodes</p>
+            <div class="slide-description">
+              <p><strong data-translate="carousel.slide4.intro">Plusieurs méthodes de prévision implémentées :</strong></p>
+              <ul>
+                <li data-translate="carousel.slide4.feature1"><strong>Moyenne Mobile (3M, 6M) :</strong> Calcul de tendance simple</li>
+                <li data-translate="carousel.slide4.feature2"><strong>Moyenne Pondérée :</strong> Périodes récentes ont un poids plus élevé (0,5/0,3/0,2)</li>
+                <li data-translate="carousel.slide4.feature3"><strong>Lissage Exponentiel :</strong> Alpha 0,3 pour le lissage</li>
+                <li data-translate="carousel.slide4.feature4"><strong>Ajustement Saisonnier :</strong> Indices mensuels appliqués (3,5x pour Décembre)</li>
+              </ul>
+              <p><strong data-translate="carousel.slide4.selection">Sélection dynamique de méthode :</strong></p>
+              <ul>
+                <li data-translate="carousel.slide4.auto">Mode Auto : Sélectionne "Saisonnier" si indice ≥1,5, sinon "Moyenne_Mobile"</li>
+                <li data-translate="carousel.slide4.manual">Mode Manuel : L'utilisateur spécifie la méthode dans les paramètres</li>
+              </ul>
+              <p class="highlight" data-translate="carousel.slide4.highlight">Les 20 produits calculés avec stock de sécurité & points de commande</p>
+            </div>
+            <div class="slide-tech">
+              <strong data-translate="carousel.tech">Tech :</strong> <span data-translate="carousel.slide4.tech">Formules Excel (MOYENNE.SI, RECHERCHEV, SI), locale française</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5: Forecast Summary -->
+      <div class="carousel-slide">
+        <div class="slide-content">
+          <div class="slide-image">
+            <img src="images/demand-forecast/05-forecast-summary.jpg" alt="12-Month Forecast Summary">
+          </div>
+          <div class="slide-info">
+            <span class="slide-number">5 / 6</span>
+            <h2 data-translate="carousel.slide5.title">Prévisions Glissantes 12 Mois</h2>
+            <p class="slide-subtitle" data-translate="carousel.slide5.subtitle">Détail Mensuel & Commentaires</p>
+            <div class="slide-description">
+              <p><strong data-translate="carousel.slide5.intro">Sortie complète des prévisions :</strong></p>
+              <ul>
+                <li data-translate="carousel.slide5.feature1"><strong>20 SKUs</strong> répartis sur 5 catégories</li>
+                <li data-translate="carousel.slide5.feature2"><strong>12 mois</strong> de prévisions (M0 à M10+)</li>
+                <li data-translate="carousel.slide5.feature3"><strong>En-têtes dynamiques :</strong> Les mois se mettent à jour automatiquement selon le paramètre période de prévision</li>
+                <li data-translate="carousel.slide5.feature4"><strong>Basé sur formules :</strong> RECHERCHEV récupère les indices saisonniers depuis les paramètres</li>
+                <li data-translate="carousel.slide5.feature5"><strong>Suivi de commentaires :</strong> Drapeaux "Meilleur vendeur Noël" pour produits clés</li>
+                <li data-translate="carousel.slide5.feature6"><strong>Lignes totaux :</strong> 19 700 unités historique (Déc-24), 20 721 prévision (Déc-25)</li>
+              </ul>
+              <p class="highlight" data-translate="carousel.slide5.highlight">Intégré avec FORECAST_ENGINE pour calcul automatique</p>
+            </div>
+            <div class="slide-tech">
+              <strong data-translate="carousel.tech">Tech :</strong> <span data-translate="carousel.slide5.tech">Tableaux Excel, Références structurées, fonctions DATE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6: Power Pivot -->
+      <div class="carousel-slide">
+        <div class="slide-content">
+          <div class="slide-image">
+            <img src="images/demand-forecast/06-power-pivot.jpg" alt="Power Pivot Data Model">
+          </div>
+          <div class="slide-info">
+            <span class="slide-number">6 / 6</span>
+            <h2 data-translate="carousel.slide6.title">Modèle de Données Power Pivot</h2>
+            <p class="slide-subtitle" data-translate="carousel.slide6.subtitle">Mesures DAX & Colonnes Calculées</p>
+            <div class="slide-description">
+              <p><strong data-translate="carousel.slide6.intro">Architecture du modèle de données :</strong></p>
+              <ul>
+                <li data-translate="carousel.slide6.feature1"><strong>Table Fcst_Hist :</strong> 220 lignes (11 mois × 20 produits)</li>
+                <li data-translate="carousel.slide6.feature2"><strong>Relations :</strong> Période, SKU, Produit, Catégorie</li>
+                <li data-translate="carousel.slide6.feature3"><strong>Colonne Calculée DAX :</strong> Variance Mensuelle %
+                  <code>= DIVIDE(Forecast - Actual_Sales, Actual_Sales)</code>
+                </li>
+                <li data-translate="carousel.slide6.feature4"><strong>Tableau Croisé Dynamique :</strong> Agrégation mensuelle avec variance %</li>
+              </ul>
+              <p><strong data-translate="carousel.slide6.results">Résultats clés :</strong></p>
+              <ul>
+                <li data-translate="carousel.slide6.result1">Jan-Sept : variance 2-4% (excellent)</li>
+                <li data-translate="carousel.slide6.result2">Oct : variance 5% (bon)</li>
+                <li data-translate="carousel.slide6.result3">Nov : variance 10% (acceptable pour la saisonnalité de Noël)</li>
+              </ul>
+              <p class="highlight" data-translate="carousel.slide6.highlight">Alimente le graphique "Variance de Prévision Mensuelle" dans le tableau de bord</p>
+            </div>
+            <div class="slide-tech">
+              <strong data-translate="carousel.tech">Tech :</strong> <span data-translate="carousel.slide6.tech">Power Pivot, DAX, fonction DIVIDE, Tableaux Croisés Dynamiques</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button class="carousel-nav prev" onclick="changeSlide(-1)" aria-label="Previous slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button class="carousel-nav next" onclick="changeSlide(1)" aria-label="Next slide">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Navigation Dots -->
+    <div class="carousel-dots">
+      <span class="dot active" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+      <span class="dot" onclick="goToSlide(3)"></span>
+      <span class="dot" onclick="goToSlide(4)"></span>
+      <span class="dot" onclick="goToSlide(5)"></span>
+    </div>
+
+    <!-- Project Info Footer -->
+    <div class="modal-footer">
+      <div class="footer-content">
+        <div class="footer-left">
+          <h4 data-translate="carousel.footer.title">📊 Tableau de Bord Demand Forecast</h4>
+          <p data-translate="carousel.footer.subtitle">Solution Excel complète de prévision | 96% Précision | 5% MAPE</p>
+        </div>
+        <div class="footer-right">
+          <button class="btn-download" onclick="requestFile()">
+            <span data-translate="carousel.footer.button">📥 Demander le Fichier Complet</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
                 <!-- Excel Project 3 -->
                 <div class="project-card">
