@@ -142,7 +142,7 @@ window.onclick = function(event) {
 // === REQUEST FILE FUNCTION ===
 function requestFile() {
   // Option 1: Open email client
-  const email = 'your-email@example.com'; // REMPLACE PAR TON EMAIL
+  const email = 'priscah_supplydata@outlook.com';
   const subject = 'Request: Demand Forecast Dashboard Excel File';
   const body = 'Hi Prisca,%0D%0A%0D%0AI would like to request access to your Demand Forecast Dashboard Excel file.%0D%0A%0D%0AThank you!';
   
@@ -151,12 +151,8 @@ function requestFile() {
   // Option 2: Show custom modal with contact form
   // Uncomment if you prefer a modal instead of email
   /*
-  alert('Please contact me at your-email@example.com to request the full Excel file.');
+  alert('Please contact me at priscah_supplydata@outlook.com to request the full Excel file.');
   */
-  
-  // Option 3: Link to LinkedIn/Contact page
-  // window.open('https://www.linkedin.com/in/your-profile', '_blank');
-}
 
 // === AUTO-PLAY (OPTIONAL) ===
 // Uncomment to enable auto-play every 5 seconds
