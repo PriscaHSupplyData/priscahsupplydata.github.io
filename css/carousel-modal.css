@@ -631,3 +631,27 @@
     padding: 0;
   }
 }
+/* === CORRECTION LISIBILITÉ TEXTE SUR LA COLONNE DROITE === */
+
+/* Couleur par défaut du texte (paragraphes + puces) */
+.slide-info,
+.slide-info p,
+.slide-info li {
+  color: #e5e7eb; /* gris clair lisible sur fond très sombre */
+}
+
+/* Titre principal du panneau droit */
+.slide-info h2 {
+  color: #f9fafb; /* quasi blanc pour bien ressortir */
+}
+
+/* Sous-titre (juste sous le h2) */
+.slide-subtitle {
+  color: #9bd2d5; /* teal plus clair, différencié du texte gris */
+}
+
+/* Mots en gras dans le texte / les puces */
+.slide-info strong {
+  color: #ffffff;   /* encore un cran plus clair */
+  font-weight: 600;
+}
