@@ -12,16 +12,13 @@ let touchEndX = 0;
 function openForecastCarousel() {
   const modal = document.getElementById('forecastCarouselModal');
   modal.classList.add('active');
-  document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  document.body.style.overflow = 'hidden';
   
-  // Reset to first slide
   currentSlide = 0;
   showSlide(currentSlide);
   
-  // Add keyboard listener
   document.addEventListener('keydown', handleKeyPress);
   
-  // Add touch listeners for swipe on mobile
   const container = document.querySelector('.carousel-container');
   container.addEventListener('touchstart', handleTouchStart, { passive: true });
   container.addEventListener('touchend', handleTouchEnd, { passive: true });
@@ -31,12 +28,10 @@ function openForecastCarousel() {
 function closeForecastCarousel() {
   const modal = document.getElementById('forecastCarouselModal');
   modal.classList.remove('active');
-  document.body.style.overflow = ''; // Re-enable scrolling
+  document.body.style.overflow = '';
   
-  // Remove keyboard listener
   document.removeEventListener('keydown', handleKeyPress);
   
-  // Remove touch listeners
   const container = document.querySelector('.carousel-container');
   container.removeEventListener('touchstart', handleTouchStart);
   container.removeEventListener('touchend', handleTouchEnd);
@@ -47,30 +42,25 @@ function showSlide(n) {
   const slides = document.querySelectorAll('.carousel-slide');
   const dots = document.querySelectorAll('.dot');
   
-// Wrap around if out of bounds
-  if (n >= 6) {  // 6 slides au total
+  if (n >= totalSlides) {
     currentSlide = 0;
   } else if (n < 0) {
-    currentSlide = 5;  // Dernière slide
+    currentSlide = totalSlides - 1;
   } else {
     currentSlide = n;
   }
   
-  // Hide all slides
   slides.forEach(slide => {
     slide.classList.remove('active');
   });
   
-  // Remove active class from all dots
   dots.forEach(dot => {
     dot.classList.remove('active');
   });
   
-  // Show current slide
   slides[currentSlide].classList.add('active');
   dots[currentSlide].classList.add('active');
   
-  // Scroll to top of slide content
   slides[currentSlide].scrollTop = 0;
 }
 
@@ -78,10 +68,7 @@ function showSlide(n) {
 function changeSlide(direction) {
   showSlide(currentSlide + direction);
 }
-// === GO TO SPECIFIC SLIDE (DOTS) ===
-function goToSlide(n) {
-  showSlide(n);
-}
+
 // === GO TO SPECIFIC SLIDE (DOTS) ===
 function goToSlide(n) {
   showSlide(n);
@@ -121,15 +108,13 @@ function handleTouchEnd(e) {
 }
 
 function handleSwipe() {
-  const swipeThreshold = 50; // Minimum distance for swipe
+  const swipeThreshold = 50;
   
   if (touchEndX < touchStartX - swipeThreshold) {
-    // Swipe left -> next slide
     changeSlide(1);
   }
   
   if (touchEndX > touchStartX + swipeThreshold) {
-    // Swipe right -> previous slide
     changeSlide(-1);
   }
 }
@@ -144,63 +129,22 @@ window.onclick = function(event) {
 
 // === REQUEST FILE FUNCTION ===
 function requestFile() {
-  // Option 1: Open email client
-  const email = 'priscah_supplydata@outlook.com';
-  const subject = 'Request: Demand Forecast Dashboard Excel File';
-  const body = 'Hi Prisca,%0D%0A%0D%0AI would like to request access to your Demand Forecast Dashboard Excel file.%0D%0A%0D%0AThank you!';
+  const email = 'priscah_supplydata@outlook.com';  // ← TON EMAIL
+  const subject = 'Demande : Fichier Excel Dashboard Demand Forecast';
+  const body = 'Bonjour Prisca,%0D%0A%0D%0AJe souhaiterais accéder à votre fichier Excel Dashboard Demand Forecast.%0D%0A%0D%0AMerci !';
   
   window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${body}`;
-  
-  // Option 2: Show custom modal with contact form
-  // Uncomment if you prefer a modal instead of email
-  /*
-  alert('Please contact me at priscah_supplydata@outlook.com to request the full Excel file.');
-  */
-
-// === AUTO-PLAY (OPTIONAL) ===
-// Uncomment to enable auto-play every 5 seconds
-/*
-let autoPlayInterval;
-
-function startAutoPlay() {
-  autoPlayInterval = setInterval(() => {
-    changeSlide(1);
-  }, 5000);
 }
 
-function stopAutoPlay() {
-  clearInterval(autoPlayInterval);
-}
-
-// Start auto-play when modal opens
-function openForecastCarousel() {
-  // ... existing code ...
-  startAutoPlay();
-}
-
-// Stop auto-play when modal closes or user interacts
-function closeForecastCarousel() {
-  // ... existing code ...
-  stopAutoPlay();
-}
-
-// Stop auto-play on manual navigation
-document.querySelector('.carousel-nav.prev').addEventListener('click', stopAutoPlay);
-document.querySelector('.carousel-nav.next').addEventListener('click', stopAutoPlay);
-document.querySelectorAll('.dot').forEach(dot => {
-  dot.addEventListener('click', stopAutoPlay);
-});
-*/
-
-// === PRELOAD IMAGES FOR SMOOTH TRANSITIONS (OPTIONAL) ===
+// === PRELOAD IMAGES ===
 function preloadImages() {
   const imageUrls = [
-    'images/demand-forecast/01-dashboard.jpg',
-    'images/demand-forecast/02-parameters.jpg',
-    'images/demand-forecast/03-power-query.jpg',
-    'images/demand-forecast/04-forecast-engine.jpg',
-    'images/demand-forecast/05-forecast-summary.jpg',
-    'images/demand-forecast/06-power-pivot.jpg'
+    'Images/DemandForecast/01-dashboard.jpg',
+    'Images/DemandForecast/02-parameters.jpg',
+    'Images/DemandForecast/03-power-query.jpg',
+    'Images/DemandForecast/04-forecast-engine.jpg',
+    'Images/DemandForecast/05-forecast-summary.jpg',
+    'Images/DemandForecast/06-power-pivot.jpg'
   ];
   
   imageUrls.forEach(url => {
@@ -209,37 +153,6 @@ function preloadImages() {
   });
 }
 
-// Preload images when page loads
 window.addEventListener('load', preloadImages);
-
-// === ANALYTICS TRACKING (OPTIONAL) ===
-// Track when users open the carousel
-function trackCarouselOpen() {
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'carousel_open', {
-      'event_category': 'engagement',
-      'event_label': 'Demand Forecast Dashboard'
-    });
-  }
-}
-
-// Track which slides users view
-function trackSlideView(slideNumber) {
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'slide_view', {
-      'event_category': 'engagement',
-      'event_label': `Slide ${slideNumber + 1}`
-    });
-  }
-}
-
-// Add tracking to showSlide function
-// showSlide = (function() {
-//   const originalShowSlide = showSlide;
-//   return function(n) {
-//     originalShowSlide(n);
-//     trackSlideView(currentSlide);
-//   }
-// })();
 
 console.log('✅ Demand Forecast Carousel initialized');
