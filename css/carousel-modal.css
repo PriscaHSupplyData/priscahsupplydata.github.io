@@ -538,7 +538,7 @@
 
   /* GARDER LES FLÈCHES MÊME SUR PETITS ÉCRANS */
   .carousel-nav {
-    display: flex;         /* au lieu de display: none */
+    display: flex;         
   }
 
   .carousel-dots {
