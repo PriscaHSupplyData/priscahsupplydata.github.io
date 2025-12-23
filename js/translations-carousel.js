@@ -267,7 +267,7 @@ document.addEventListener('languageChanged', (event) => {
 
 // Option 2: Appeler manuellement quand l'utilisateur change de langue
 // Ajoute cet appel dans ta fonction de changement de langue existante
-function changeLanguage(lang) {
+function changeCarouselLanguage(lang) {
   // ... ton code existant ...
   translateCarousel(lang);
 }
@@ -295,3 +295,5 @@ if (typeof window !== 'undefined') {
 }
 
 console.log('✅ Carousel translations loaded (FR/EN)');
+window.changeCarouselLanguage = changeCarouselLanguage;
+
