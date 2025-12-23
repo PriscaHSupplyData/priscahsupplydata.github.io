@@ -242,31 +242,51 @@ const translations = {
 // FONCTION DE CHANGEMENT DE LANGUE
 // ========================================
 
-let currentLang = localStorage.getItem('language') || 'fr';
+let currentLang = localStorage.getItem("language") || "fr";
 
 function changeLanguage(lang) {
-    currentLang = lang;
-    localStorage.setItem('language', lang);
-    
-    // Mettre à jour tous les éléments avec data-translate
-    document.querySelectorAll('[data-translate]').forEach(element => {
-        const key = element.getAttribute('data-translate');
-        if (translations[lang][key]) {
-            element.innerHTML = translations[lang][key];
-        }
-    });
-    
-    // Mettre à jour le bouton actif
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.querySelector(`.lang-btn[data-lang="${lang}"]`)?.classList.add('active');
-    
-    // Mettre à jour l'attribut lang du HTML
-    document.documentElement.lang = lang;
+  // sécurité : langue inconnue
+  if (!translations[lang]) {
+    console.warn("Langue non supportée :", lang);
+    return;
+  }
+
+  currentLang = lang;
+  try {
+    localStorage.setItem("language", lang);
+  } catch (e) {
+    // pas grave si localStorage est bloqué
+  }
+
+  // Mettre à jour tous les éléments avec data-translate
+  document.querySelectorAll("[data-translate]").forEach((element) => {
+    const key = element.getAttribute("data-translate");
+    const value = translations[lang][key];
+    if (value !== undefined) {
+      // on garde innerHTML car tu utilises <strong> dans certains textes
+      element.innerHTML = value;
+    }
+  });
+
+  // Mettre à jour le bouton actif
+  document.querySelectorAll(".lang-btn").forEach((btn) => {
+    const btnLang = btn.getAttribute("data-lang");
+    btn.classList.toggle("active", btnLang === lang);
+  });
+
+  // Mettre à jour l'attribut lang du HTML
+  document.documentElement.lang = lang;
+
+  // >>> Appeler aussi la traduction du CAROUSEL si elle existe
+  if (typeof window.changeCarouselLanguage === "function") {
+    window.changeCarouselLanguage(lang);
+  }
 }
 
+// exposer explicitement la fonction au global
+window.changeLanguage = changeLanguage;
+
 // Initialiser la langue au chargement
-document.addEventListener('DOMContentLoaded', function() {
-    changeLanguage(currentLang);
+document.addEventListener("DOMContentLoaded", function () {
+  changeLanguage(currentLang);
 });
