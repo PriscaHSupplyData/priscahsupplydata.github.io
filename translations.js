@@ -13,7 +13,7 @@ const translations = {
         nav_contact: "Contact",
         
         // Hero
-        hero_title: "Supply Chain Expert | Data Analyst | Power BI",
+        hero_title: "Supply Chain Expert | Data & Power BI",
         hero_subtitle: "La data au service des décisions supply chain",
         hero_stat1_number: "15+",
         hero_stat1_label: "Années d'expérience",
@@ -130,7 +130,7 @@ const translations = {
         nav_contact: "Contact",
         
         // Hero
-        hero_title: "Supply Chain Expert | Data Analyst | Power BI",
+        hero_title: "Supply Chain Expert | Data & Power BI",
         hero_subtitle: "Turning supply chain data into better decisions",
         hero_stat1_number: "15+",
         hero_stat1_label: "Years of Experience",
