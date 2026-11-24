@@ -14,7 +14,7 @@ const translations = {
         
         // Hero
         hero_title: "Supply Chain Expert | Data Analyst | Power BI",
-        hero_subtitle: "Transformant les données supply chain en insights stratégiques",
+        hero_subtitle: "La data au service des décisions supply chain",
         hero_stat1_number: "15+",
         hero_stat1_label: "Années d'expérience",
         hero_stat2_number: "Power BI",
@@ -131,7 +131,7 @@ const translations = {
         
         // Hero
         hero_title: "Supply Chain Expert | Data Analyst | Power BI",
-        hero_subtitle: "Transforming supply chain data into strategic insights",
+        hero_subtitle: "Turning supply chain data into better decisions",
         hero_stat1_number: "15+",
         hero_stat1_label: "Years of Experience",
         hero_stat2_number: "Power BI",
