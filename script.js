@@ -136,7 +136,7 @@ function getYouTubeId(url) {
   if (!footerYear) return;
 
   const currentYear = new Date().getFullYear();
-  footerYear.innerHTML = `&copy; ${currentYear} Prisca H. Supply & Data - Supply Chain Expert | Data Analyst | Power BI`;
+  footerYear.innerHTML = `&copy; ${currentYear} Prisca H. Supply & Data - Supply Chain Expert | Data & Power BI`;
 })();
 
 // ========================================
