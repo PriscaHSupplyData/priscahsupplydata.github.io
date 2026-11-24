@@ -18,7 +18,7 @@ const translations = {
         hero_stat1_number: "15+",
         hero_stat1_label: "Années d'expérience",
         hero_stat2_number: "Power BI",
-        hero_stat2_label: "DAX, Power Query, dataviz,
+        hero_stat2_label: "DAX, Power Query, dataviz",
         hero_stat3_number: "Supply Chain",
         hero_stat3_label: "Luxe, Cosmétiques, Pharma",
         hero_cta: "Découvrir mes projets",
